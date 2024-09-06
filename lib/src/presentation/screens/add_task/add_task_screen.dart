@@ -31,6 +31,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void submitData() {
+    FocusScope.of(context).requestFocus(FocusNode());
     if (_formKey.currentState!.validate()) {
       timeController.text = intl.DateFormat.jm().format(selectedTime);
       if (widget.task != null) {
@@ -103,22 +104,24 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RichText(text: TextSpan(
-                            text: 'Title Task',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(fontWeight: FontWeight.bold),
-                            children: [
-                              TextSpan(
-                                text: ' *',
-                                style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(fontWeight: FontWeight.bold, color: Colors.red.shade700),
-                              )
-                            ]
-                          )),
+                          RichText(
+                              text: TextSpan(
+                                  text: 'Title Task',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                  children: [
+                                TextSpan(
+                                  text: ' *',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.red.shade700),
+                                )
+                              ])),
                           const SizedBox(
                             height: 10,
                           ),
